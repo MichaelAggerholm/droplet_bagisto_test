@@ -14,7 +14,12 @@ class CreateWarehouseTable extends Migration
     public function up()
     {
         Schema::create('warehouse', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->length(10)->index();
+            $table->string('name')->length(255);
+            $table->string('address')->length(255);
+            $table->integer('phone')->length(10);
+            $table->string('url')->length(255)->nullable();
+            $table->integer('isDeleted')->default(0);
             $table->timestamps();
         });
     }

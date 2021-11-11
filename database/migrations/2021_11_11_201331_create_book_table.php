@@ -14,8 +14,17 @@ class CreateBookTable extends Migration
     public function up()
     {
         Schema::create('book', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->length(10)->index();
+            $table->string('ISBN')->length(255)->unique();
+            $table->integer('publisher_id')->length(10)->unsigned();
+            $table->integer('author_id')->length(10)->unsigned();
+            $table->integer('year')->length(10);
+            $table->string('title')->length(255);
+            $table->decimal('price', 19, 0);
+            $table->integer('isDeleted')->default(0);
             $table->timestamps();
+            $table->foreign('publisher_id')->references('id')->on('publisher')->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('author')->onDelete('cascade');
         });
     }
 

@@ -14,7 +14,9 @@ class CreateWarehouseBookTable extends Migration
     public function up()
     {
         Schema::create('warehouse_book', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->length(10)->index();
+            $table->integer('warehouse_id')->length(10)->unsigned();
+            $table->integer('book_id')->length(10)->unsigned();
             $table->timestamps();
         });
     }

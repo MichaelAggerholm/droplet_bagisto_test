@@ -24,11 +24,11 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'ISBN' => $this->faker->unique()->word(10),
+            'ISBN' => $this->faker->unique()->word(15),
             'publisher_id' => Publisher::factory(),
             'author_id' => Author::factory(),
             'year' => $this->faker->unique()->numerify('####'),
-            'title' => $this->faker->unique()->word(5),
+            'title' => $this->faker->unique()->word(10),
             'price' => $this->faker->unique()->numerify('###'),
         ];
     }

@@ -25,4 +25,9 @@ class Book extends Model
     {
         return $this->belongsToMany(Warehouse::class);
     }
+
+    public function shoppingBasket()
+    {
+        return $this->belongsToMany(ShoppingBasket::class);
+    }
 }

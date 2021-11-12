@@ -14,8 +14,11 @@ class CreateShoppingBasketTable extends Migration
     public function up()
     {
         Schema::create('shoppingbasket', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id')->length(10)->index();
+            $table->integer('customer_id')->length(10)->unsigned();
+            $table->integer('isDeleted')->default(0);
             $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customer')->onDelete('cascade');
         });
     }
 

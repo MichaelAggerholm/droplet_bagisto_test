@@ -9,6 +9,8 @@ class Shoppingbasket extends Model
 {
     use HasFactory;
 
+//    protected $table = 'shoppingbaskets';
+
     public function customers(){
         return $this->hasOne('App\Models\Customer');
     }

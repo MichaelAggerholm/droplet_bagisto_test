@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Shoppingbasket;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,8 @@ class ShoppingbasketController extends Controller
 
         $shoppingbasket->save();
 
-//        $warehouses = Warehouse::find(1);
-//        $shoppingbasket->warehouses()->attach($warehouses);
+        $book = Book::find(1);
+        $shoppingbasket->books()->attach($book);
 
         return 'Success';
     }

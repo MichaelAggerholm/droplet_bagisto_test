@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingBasketBookTable extends Migration
+class CreatePublishersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateShoppingBasketBookTable extends Migration
      */
     public function up()
     {
-        Schema::create('shoppingbasket_book', function (Blueprint $table) {
+        Schema::create('publishers', function (Blueprint $table) {
             $table->increments('id')->length(10)->index();
-            $table->integer('customer_id')->length(10)->unsigned();
-            $table->integer('book_id')->length(10)->unsigned();
+            $table->string('name')->length(255);
+            $table->string('address')->length(255);
+            $table->integer('phone')->length(10);
+            $table->string('url')->nullable();
+            $table->integer('isDeleted')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateShoppingBasketBookTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shoppingbasket_book');
+        Schema::dropIfExists('publishers');
     }
 }

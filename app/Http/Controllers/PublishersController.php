@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
-class AuthorController extends Controller
+class PublishersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +22,20 @@ class AuthorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $publisher = new Publisher;
+        $publisher->name = 'Jack Andersen';
+        $publisher->address = 'Systemvej 9';
+        $publisher->phone = '20241530';
+        $publisher->url = 'www.JackFraSystemvej9.dk';
+
+        $publisher->save();
+
+//        $category = Category::find([3, 4]);
+//        $product->categories()->attach($category);
+
+        return 'Success';
     }
 
     /**

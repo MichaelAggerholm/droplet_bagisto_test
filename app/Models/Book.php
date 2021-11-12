@@ -28,6 +28,6 @@ class Book extends Model
 
     public function shoppingBasket()
     {
-        return $this->belongsToMany(ShoppingBasket::class);
+        return $this->belongsToMany(Shoppingbasket::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWarehouseBookTable extends Migration
+class CreateShoppingBasketsBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateWarehouseBookTable extends Migration
      */
     public function up()
     {
-        Schema::create('warehouse_book', function (Blueprint $table) {
+        Schema::create('shoppingbaskets_books', function (Blueprint $table) {
             $table->increments('id')->length(10)->index();
-            $table->integer('warehouse_id')->length(10)->unsigned();
-            $table->integer('book_id')->length(10)->unsigned();
+            $table->integer('customers_id')->length(10)->unsigned();
+            $table->integer('books_id')->length(10)->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateWarehouseBookTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('warehouse_book');
+        Schema::dropIfExists('shoppingbaskets_books');
     }
 }

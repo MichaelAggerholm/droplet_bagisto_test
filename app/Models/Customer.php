@@ -14,6 +14,6 @@ class Customer extends Model
     ];
 
     public function shoppingBasket(){
-        return $this->hasOne('App\Models\ShoppingBasket');
+        return $this->hasOne('App\Models\Shoppingbasket');
     }
 }

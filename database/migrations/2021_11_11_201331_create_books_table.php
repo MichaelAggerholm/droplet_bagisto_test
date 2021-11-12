@@ -14,7 +14,7 @@ class CreateBooksTable extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->increments('id')->length(10)->index();
+            $table->bigIncrements('id');
             $table->string('ISBN')->length(255)->unique();
             $table->foreignId('publisher_id')->constrained()->cascadeOnDelete();
             $table->foreignId('author_id')->constrained()->cascadeOnDelete();

@@ -35,8 +35,8 @@ class BookController extends Controller
 
         $book->save();
 
-        $warehouse = Warehouse::find('books_id');
-        $book->warehouses()->attach($warehouse);
+        $warehouses = Warehouse::find(1);
+        $book->warehouses()->attach($warehouses);
 
         return 'Success';
     }

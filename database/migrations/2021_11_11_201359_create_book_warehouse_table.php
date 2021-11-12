@@ -16,11 +16,11 @@ class CreateBookWarehouseTable extends Migration
         Schema::create('book_warehouse', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->bigIncrements('id');
-            $table->integer('books_id')->unsigned();
-            $table->integer('warehouses_id')->unsigned();
+            $table->integer('book_id')->unsigned();
+            $table->integer('warehouse_id')->unsigned();
 
-            $table->foreign('books_id')->references('id')->on('books');
-            $table->foreign('warehouses_id')->references('id')->on('warehouses');
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
         });
     }
 

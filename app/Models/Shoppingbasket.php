@@ -9,11 +9,11 @@ class Shoppingbasket extends Model
 {
     use HasFactory;
 
-    public function customer(){
+    public function customers(){
         return $this->hasOne('App\Models\Customer');
     }
 
-    public function Book()
+    public function Books()
     {
         return $this->belongsToMany(Book::class);
     }

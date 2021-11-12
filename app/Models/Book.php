@@ -10,23 +10,23 @@ class Book extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ISBN', 'publisher_name', 'author_name', 'year', 'title', 'price',
+        'ISBN', 'publisher_id', 'author_id', 'year', 'title', 'price',
     ];
 
-    public function Author(){
+    public function authors(){
         return $this->belongsTo(Author::class);
     }
 
-    public function Publisher(){
+    public function publishers(){
         return $this->belongsTo(Publisher::class);
     }
 
-    public function Warehouse()
+    public function warehouses()
     {
         return $this->belongsToMany(Warehouse::class);
     }
 
-    public function shoppingBasket()
+    public function shoppingBaskets()
     {
         return $this->belongsToMany(Shoppingbasket::class);
     }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class BooksController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +22,16 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $customer = new Customer;
+        $customer->mail = 'customer1@gmail.com';
+        $customer->name = 'Customer 1';
+        $customer->address = 'Nykøbsgade 16';
+        $customer->phone = '29617265';
+
+        $customer->save();
+        return 'Success';
     }
 
     /**

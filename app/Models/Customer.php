@@ -13,7 +13,7 @@ class Customer extends Model
         'email', 'name', 'address', 'phone',
     ];
 
-    public function shoppingBasket(){
+    public function shoppingBaskets(){
         return $this->hasOne('App\Models\Shoppingbasket');
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublishersController;
-use App\Http\Controllers\AuthorsController;
-use App\Http\Controllers\BooksController;
-use App\Http\Controllers\WarehousesController;
-use App\Http\Controllers\CustomersController;
-use App\Http\Controllers\ShoppingbasketsController;
+use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ShoppingbasketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('publishers', PublishersController::class);
-Route::resource('authors', AuthorsController::class);
-Route::resource('books', BooksController::class);
-Route::resource('warehouses', WarehousesController::class);
-Route::resource('customers', CustomersController::class);
-Route::resource('shoppingbaskets', ShoppingbasketsController::class);
+Route::resource('publisher', PublisherController::class);
+Route::resource('author', AuthorController::class);
+Route::resource('book', BookController::class);
+Route::resource('warehouse', WarehouseController::class);
+Route::resource('customer', CustomerController::class);
+Route::resource('shoppingbasket', ShoppingbasketController::class);

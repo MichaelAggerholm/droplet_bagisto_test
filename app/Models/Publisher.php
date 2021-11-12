@@ -13,7 +13,7 @@ class Publisher extends Model
         'name', 'address', 'phone', 'url',
     ];
 
-    public function book(){
+    public function books(){
         return $this->hasMany('App\Models\Book');
     }
 }

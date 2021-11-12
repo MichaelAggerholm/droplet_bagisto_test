@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Author;
+use App\Models\Book;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
-class AuthorsController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,16 +25,18 @@ class AuthorsController extends Controller
      */
     public function create(Request $request)
     {
-        $author = new Author;
-        $author->name = 'Mads Klausen';
-        $author->address = 'Hobrovej 52';
-        $author->phone = '30242015';
-        $author->url = 'www.MadsFraHobrovej52.dk';
+        $book = new Book;
+        $book->ISBN = 'ISBN12349';
+        $book->publisher_id = 1;
+        $book->author_id = 1;
+        $book->year = 1992;
+        $book->title = 'Worlds first test book';
+        $book->price = 250;
 
-        $author->save();
+        $book->save();
 
-//        $category = Category::find([3, 4]);
-//        $product->categories()->attach($category);
+        $warehouse = Warehouse::find('books_id');
+        $book->warehouses()->attach($warehouse);
 
         return 'Success';
     }

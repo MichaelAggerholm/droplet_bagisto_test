@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use Illuminate\Http\Request;
 
-class WarehousesController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +22,16 @@ class WarehousesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $author = new Author;
+        $author->name = 'Mads Klausen';
+        $author->address = 'Hobrovej 52';
+        $author->phone = '30242015';
+        $author->url = 'www.MadsFraHobrovej52.dk';
+
+        $author->save();
+        return 'Success';
     }
 
     /**

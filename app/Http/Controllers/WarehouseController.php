@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
-class ShoppingbasketsController extends Controller
+class WarehouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +22,16 @@ class ShoppingbasketsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $warehouse = new Warehouse;
+        $warehouse->name = 'Warehouse 1';
+        $warehouse->address = 'Havnebyen 11';
+        $warehouse->phone = '98564218';
+        $warehouse->url = 'www.WarehouseHavnebyen11.dk';
+
+        $warehouse->save();
+        return 'Success';
     }
 
     /**

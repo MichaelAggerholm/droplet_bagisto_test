@@ -9,7 +9,11 @@ class Warehouse extends Model
 {
     use HasFactory;
 
-    public function Book()
+    protected $fillable = [
+        'name', 'address', 'phone', 'url',
+    ];
+
+    public function Books()
     {
         return $this->belongsToMany(Book::class);
     }

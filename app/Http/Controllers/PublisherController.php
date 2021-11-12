@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 
-class PublishersController extends Controller
+class PublisherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,6 @@ class PublishersController extends Controller
         $publisher->url = 'www.JackFraSystemvej9.dk';
 
         $publisher->save();
-
-//        $category = Category::find([3, 4]);
-//        $product->categories()->attach($category);
-
         return 'Success';
     }
 

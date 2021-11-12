@@ -26,7 +26,7 @@ class BookController extends Controller
     public function create(Request $request)
     {
         $book = new Book;
-        $book->ISBN = 'ISBN123492';
+        $book->ISBN = 'ISBN12349';
         $book->publisher_id = 1;
         $book->author_id = 1;
         $book->year = 1992;
@@ -35,7 +35,7 @@ class BookController extends Controller
 
         $book->save();
 
-        $warehouses = Warehouse::find(2);
+        $warehouses = Warehouse::find(1);
         $book->warehouses()->attach($warehouses);
 
         return 'Success';

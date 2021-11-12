@@ -15,10 +15,9 @@ class CreateShoppingBasketsTable extends Migration
     {
         Schema::create('shoppingbaskets', function (Blueprint $table) {
             $table->increments('id')->length(10)->index();
-            $table->integer('customers_id')->length(10)->unsigned();
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->integer('isDeleted')->default(0);
             $table->timestamps();
-            $table->foreign('customers_id')->references('id')->on('customers')->onDelete('cascade');
         });
     }
 

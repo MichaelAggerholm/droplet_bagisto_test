@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shoppingbasket;
 use Illuminate\Http\Request;
 
 class ShoppingbasketController extends Controller
@@ -23,7 +24,15 @@ class ShoppingbasketController extends Controller
      */
     public function create()
     {
-        //
+        $shoppingbasket = new Shoppingbasket;
+        $shoppingbasket->customer_id = 1;
+
+        $shoppingbasket->save();
+
+//        $warehouses = Warehouse::find(1);
+//        $shoppingbasket->warehouses()->attach($warehouses);
+
+        return 'Success';
     }
 
     /**

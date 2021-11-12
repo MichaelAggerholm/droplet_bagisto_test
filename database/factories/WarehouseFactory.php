@@ -23,9 +23,8 @@ class WarehouseFactory extends Factory
     {
         return [
             'name' => $this->faker->unique()->word(10),
-            'address' => $this->faker->unique()->word(15),
+            'address' => $this->faker->unique()->address(),
             'phone' => $this->faker->unique()->numerify('########'),
-
         ];
     }
 }

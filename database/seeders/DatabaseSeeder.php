@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Book;
 use App\Models\Shoppingbasket;
+use App\Models\User;
 use App\Models\Warehouse;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         Shoppingbasket::factory()->count(15)->create();
         // Book auto creates Publishers and Authors on creation.
         Book::factory()->count(15)->create();
+        User::factory()->count(15)->create();
 
         // Many-to-Many factory, randomly combines books with warehouses
         $books = Book::all();

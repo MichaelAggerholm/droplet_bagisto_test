@@ -23,8 +23,8 @@ class PublisherFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word(10),
-            'address' => $this->faker->unique()->word(15),
+            'name' => $this->faker->unique()->name(),
+            'address' => $this->faker->unique()->address(),
             'phone' => $this->faker->unique()->numerify('########'),
         ];
     }

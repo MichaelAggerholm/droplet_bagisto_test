@@ -3,9 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
-use App\Models\Customer;
-use App\Models\Publisher;
-use App\Models\Author;
 use App\Models\Shoppingbasket;
 use App\Models\Warehouse;
 use Illuminate\Database\Seeder;

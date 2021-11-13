@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
-use App\Models\Warehouse;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class BookController extends Controller
 {
@@ -28,26 +27,15 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//    public function create(Request $request)
     public function create()
     {
-        $authors = Author::all(['id','name']);
-        return view('books.create',compact('authors'));
+        $authors = Author::all();
+        $selectedAuthor = Book::first()->author_id;
 
-//        $book = new Book;
-//        $book->ISBN = 'ISBN12349';
-//        $book->publisher_id = 1;
-//        $book->author_id = 1;
-//        $book->year = 1992;
-//        $book->title = 'Worlds first test book';
-//        $book->price = 250;
-//
-//        $book->save();
-//
-//        $warehouses = Warehouse::find(1);
-//        $book->warehouses()->attach($warehouses);
-//
-//        return 'Success';
+        $publishers = Publisher::all();
+        $selectedPublisher = Book::first()->publisher_id;
+
+        return view('books.create', compact(['authors', 'publishers'], ['selectedAuthor', 'selectedPublisher']));
     }
 
     /**
@@ -61,8 +49,8 @@ class BookController extends Controller
         // Create new book
         $request->validate([
             'ISBN' => 'required',
-            'publisher_id' => 'required',
             'author_id' => 'required',
+            'publisher_id' => 'required',
             'year' => 'required',
             'title' => 'required',
             'price' => 'required',

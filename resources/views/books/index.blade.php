@@ -33,11 +33,11 @@
             <tr>
                 <td>{{ $book->id }}</td>
                 <td>{{ $book->ISBN }}</td>
-                <td>{{ $book->author_id }}</td>
-                <td>{{ $book->publisher_id }}</td>
+                <td>{{ $book->author->name }}</td>
+                <td>{{ $book->publisher->name }}</td>
                 <td>{{ $book->year }}</td>
                 <td>{{ $book->title }}</td>
-                <td>{{ $book->price }}</td>
+                <td>{{ $book->price }} kr,-</td>
                 <td>
                     <form action="{{ route('books.destroy',$book->id) }}" method="POST">
 

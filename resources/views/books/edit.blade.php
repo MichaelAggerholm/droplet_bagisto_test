@@ -35,21 +35,48 @@
                 </div>
             </div>
 
-            {{--Her skal man vælge author--}}
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Author id:</strong>
-                    <input type="text" name="author_id" value="{{ $book->author_id }}" class="form-control" placeholder="Author id">
+                    <select class="form-control" name="author_id">
+                        @if ($authors->count())
+                            @foreach($authors as $author)
+                                <option value="{{ $author->id }}" {{ $selectedAuthor == $author->id ? 'selected="selected"' : '' }}>
+                                    {{ $author->name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Author id:</strong>
+                    <select class="form-control" name="publisher_id">
+                        @if ($publishers->count())
+                            @foreach($publishers as $publisher)
+                                <option value="{{ $publisher->id }}" {{ $selectedPublisher == $publisher->id ? 'selected="selected"' : '' }}>
+                                    {{ $publisher->name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
             </div>
 
-            {{--Her skal man vælge publisher--}}
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Publisher id:</strong>
-                    <input type="text" name="publisher_id" value="{{ $book->publisher_id }}" class="form-control" placeholder="Publisher id">
-                </div>
-            </div>
+{{--            --}}{{--Her skal man vælge author--}}
+{{--            <div class="col-xs-12 col-sm-12 col-md-12">--}}
+{{--                <div class="form-group">--}}
+{{--                    <strong>Author id:</strong>--}}
+{{--                    <input type="text" name="author_id" value="{{ $book->author_id }}" class="form-control" placeholder="Author id">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            --}}{{--Her skal man vælge publisher--}}
+{{--            <div class="col-xs-12 col-sm-12 col-md-12">--}}
+{{--                <div class="form-group">--}}
+{{--                    <strong>Publisher id:</strong>--}}
+{{--                    <input type="text" name="publisher_id" value="{{ $book->publisher_id }}" class="form-control" placeholder="Publisher id">--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

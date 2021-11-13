@@ -15,20 +15,22 @@ class Book extends Model
         'ISBN', 'publisher_id', 'author_id', 'year', 'title', 'price',
     ];
 
-    public function authors(){
+    public function author()
+    {
         return $this->belongsTo(Author::class);
     }
 
-    public function publishers(){
+    public function publisher()
+    {
         return $this->belongsTo(Publisher::class);
     }
 
-    public function warehouses()
+    public function warehouse()
     {
         return $this->belongsToMany(Warehouse::class);
     }
 
-    public function shoppingBaskets()
+    public function shoppingBasket()
     {
         return $this->belongsToMany(Shoppingbasket::class);
     }

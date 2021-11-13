@@ -6,7 +6,6 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -17,9 +16,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('books.index', [
-            'books' => DB::table('books')->paginate(15)
-        ]);
+        return view('books.index', ['books' => Book::with(['author', 'publisher'])->paginate(15)]);
     }
 
     /**
@@ -91,8 +88,13 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        // Edit a specific book
-        return view('books.edit',compact('book'));
+        $authors = Author::all();
+        $selectedAuthor = Book::first()->author_id;
+
+        $publishers = Publisher::all();
+        $selectedPublisher = Book::first()->publisher_id;
+
+        return view('books.edit', compact(['book', 'authors', 'publishers'], ['selectedAuthor', 'selectedPublisher']));
     }
 
     /**

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class BookController extends Controller
 {
@@ -29,7 +31,8 @@ class BookController extends Controller
 //    public function create(Request $request)
     public function create()
     {
-        return view('books.create');
+        $authors = Author::all(['id','name']);
+        return view('books.create',compact('authors'));
 
 //        $book = new Book;
 //        $book->ISBN = 'ISBN12349';

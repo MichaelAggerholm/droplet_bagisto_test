@@ -35,10 +35,20 @@
             </div>
 
             {{--Her skal man vælge author--}}
+{{--            <div class="col-xs-12 col-sm-12 col-md-12">--}}
+{{--                <div class="form-group">--}}
+{{--                    <strong>Author id:</strong>--}}
+{{--                    <input type="text" name="author_id" class="form-control" placeholder="Author id">--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Author id:</strong>
-                    <input type="text" name="author_id" class="form-control" placeholder="Author id">
+                    <select class="form-control">
+                        @foreach($authors as $author)
+                            <option value="{{$author->id}}">{{$author->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 

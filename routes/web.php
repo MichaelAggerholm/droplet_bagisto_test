@@ -14,13 +14,16 @@ use App\Http\Controllers\ShoppingbasketController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::resource('publisher', PublisherController::class);
-Route::resource('author', AuthorController::class);
-Route::resource('book', BookController::class);
-Route::resource('warehouse', WarehouseController::class);
-Route::resource('customer', CustomerController::class);
-Route::resource('shoppingbasket', ShoppingbasketController::class);
+Route::get('/', [BookController::class, 'index']);
+
+Route::resource('publishers', PublisherController::class);
+Route::resource('authors', AuthorController::class);
+
+Route::resource('books', BookController::class);
+Route::resource('warehouses', WarehouseController::class);
+Route::resource('customers', CustomerController::class);
+Route::resource('shoppingbaskets', ShoppingbasketController::class);

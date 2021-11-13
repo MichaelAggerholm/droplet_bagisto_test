@@ -8,7 +8,6 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('books.create') }}"> Create New book</a>
-{{--                <a class="btn btn-success" href="{{ route('import') }}"> Import books from file</a>--}}
             </div>
         </div>
     </div>
@@ -23,8 +22,8 @@
         <tr>
             <th>#</th>
             <th>ISBN</th>
-            <th>Publisher</th>
             <th>Author</th>
+            <th>Publisher</th>
             <th>Year</th>
             <th>Title</th>
             <th>Price</th>
@@ -34,8 +33,8 @@
             <tr>
                 <td>{{ $book->id }}</td>
                 <td>{{ $book->ISBN }}</td>
-                <td>{{ $book->publisher_id }}</td>
                 <td>{{ $book->author_id }}</td>
+                <td>{{ $book->publisher_id }}</td>
                 <td>{{ $book->year }}</td>
                 <td>{{ $book->title }}</td>
                 <td>{{ $book->price }}</td>

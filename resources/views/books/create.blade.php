@@ -29,8 +29,31 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Supplier ID:</strong>
-                    <input type="text" name="supplierId" class="form-control" placeholder="Supplier ID">
+                    <strong>ISBN:</strong>
+                    <input type="text" name="ISBN" class="form-control" placeholder="ISBN">
+                </div>
+            </div>
+
+            {{--Her skal man vælge author--}}
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Author id:</strong>
+                    <input type="text" name="author_id" class="form-control" placeholder="Author id">
+                </div>
+            </div>
+
+            {{--Her skal man vælge publisher--}}
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Publisher id:</strong>
+                    <input type="text" name="publisher_id" class="form-control" placeholder="Publisher id">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Year:</strong>
+                    <input type="number" name="year" class="form-control" placeholder="Year">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -41,20 +64,8 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Author:</strong>
-                    <input type="text" name="author" class="form-control" placeholder="Author">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Format:</strong>
-                    <input type="text" name="format" class="form-control" placeholder="Format">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
                     <strong>Price:</strong>
-                    <input type="text" name="price" class="form-control" placeholder="Price">
+                    <input type="number" name="price" class="form-control" placeholder="Price">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -15,26 +15,32 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Product ID:</strong>
-                {{ $book->productId }}
+                <strong>ISBN:</strong>
+                {{ $book->ISBN }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Author:</strong>
+                {{ $book->author_id }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Publisher:</strong>
+                {{ $book->publisher_id }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Year:</strong>
+                {{ $book->year }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Title:</strong>
                 {{ $book->title }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Author:</strong>
-                {{ $book->author }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Format:</strong>
-                {{ $book->format }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

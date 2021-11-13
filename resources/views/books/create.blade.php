@@ -77,6 +77,18 @@
                     <input type="number" name="price" class="form-control" placeholder="Price">
                 </div>
             </div>
+{{--            start--}}
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Warehouses:</strong>
+                    @foreach($warehouses as $warehouse)
+                        <input type="checkbox" name="checked[]" value="{{ $warehouse->id }}">
+                            {{ $warehouse->address }}
+                        <br/>
+                    @endforeach
+                </div>
+            </div>
+{{--            end--}}
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

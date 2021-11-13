@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -46,7 +47,10 @@ class BookController extends Controller
         $publishers = Publisher::all();
         $selectedPublisher = Book::first()->publisher_id;
 
-        return view('books.create', compact(['authors', 'publishers'], ['selectedAuthor', 'selectedPublisher']));
+        $warehouses = Warehouse::all();
+        $selectedWarehouse = Book::first()->warehouse_id;
+
+        return view('books.create', compact(['authors', 'publishers', 'warehouses'], ['selectedAuthor', 'selectedPublisher', 'selectedWarehouse']));
     }
 
     /**
@@ -57,6 +61,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->checked);
+
         // Create new book
         $request->validate([
             'ISBN' => 'required',
@@ -70,9 +76,12 @@ class BookController extends Controller
         try {
             Book::create($request->all());
 
-            // Match with a warehouse
-            // $warehouses = Warehouse::find(1);
-            // $book->warehouses()->attach($warehouses);
+            // Start
+            $book = Book::first(); // Book::first(); saves to the first found book (id 1), needs to be fixed to the requested book.
+            foreach ($request->checked as $value){
+                $book->warehouses()->attach([$value]);
+            }
+            // End
 
             return redirect()->route('books.index')
                 ->with('success','Book created successfully.');

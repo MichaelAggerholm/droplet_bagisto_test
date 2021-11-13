@@ -14,9 +14,23 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('books.index', ['books' => Book::with(['author', 'publisher'])->paginate(15)]);
+        $searchTerm = $request->input('search');
+
+        return view('books.index', ['books' => Book::with(['author', 'publisher'])
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                $query->where('ISBN', 'LIKE', '%' . $searchTerm . '%');
+                $query->orWhereHas('author', function($authorQuery) use ($searchTerm) {
+                    $authorQuery->where('name', 'LIKE', '%'.$searchTerm.'%');
+                });
+                $query->orWhereHas('publisher', function($authorQuery) use ($searchTerm) {
+                    $authorQuery->where('name', 'LIKE', '%'.$searchTerm.'%');
+                });
+                $query->orWhere('year', 'LIKE', '%' . $searchTerm . '%');
+                $query->orWhere('title', 'LIKE', '%' . $searchTerm . '%');
+                $query->orWhere('price', 'LIKE', '%' . $searchTerm . '%');
+            })->paginate(10)]);
     }
 
     /**

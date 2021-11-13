@@ -2,6 +2,20 @@
 
 @section('content')
     <div class="row">
+        <br>
+        <!-- Search -->
+        <div class="form-group">
+            <form method="GET" action="#" class="form-inline">
+                <input type="search"
+                       name="search"
+                       placeholder="Find something"
+                       aria-label="Search"
+                       class="form-control mr-sm-2"
+                       value="{{ request('search') }}" />
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
+        <br><br>
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Book CRUD</h2>

@@ -50,7 +50,9 @@ class BookController extends Controller
         $warehouses = Warehouse::all();
         $selectedWarehouse = Book::first()->warehouse_id;
 
-        return view('books.create', compact(['authors', 'publishers', 'warehouses'], ['selectedAuthor', 'selectedPublisher', 'selectedWarehouse']));
+        return view('books.create', compact(['authors', 'publishers', 'warehouses'],
+                        ['selectedAuthor', 'selectedPublisher', 'selectedWarehouse']
+        ));
     }
 
     /**
@@ -61,9 +63,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->checked);
-
-        // Create new book
         $request->validate([
             'ISBN' => 'required',
             'author_id' => 'required',
@@ -74,14 +73,11 @@ class BookController extends Controller
         ]);
 
         try {
-            Book::create($request->all());
+            $book = Book::create($request->all());
 
-            // Start
-            $book = Book::first(); // Book::first(); saves to the first found book (id 1), needs to be fixed to the requested book.
             foreach ($request->checked as $value){
                 $book->warehouses()->attach([$value]);
             }
-            // End
 
             return redirect()->route('books.index')
                 ->with('success','Book created successfully.');

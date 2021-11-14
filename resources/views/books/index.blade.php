@@ -31,25 +31,31 @@
     <table class="table table-sm">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">ISBN</th>
-                <th scope="col">Forfatter</th>
-                <th scope="col">Forlægger</th>
-                <th scope="col">Årstal</th>
-                <th scope="col">Titel</th>
-                <th scope="col">Pris</th>
-                <th scope="col">Yderligere funktioner</th>
+                <th scope="col" style="width: 4%">@sortablelink('id', '#')</th>
+                <th scope="col" style="width: 15%">@sortablelink('ISBN', 'ISBN')</th>
+                <th scope="col" style="width: 18%">@sortablelink('author_id', 'Forfatter')</th>
+                <th scope="col" style="width: 18%">@sortablelink('publisher_id', 'Forlægger')</th>
+                <th scope="col" style="width: 5%">@sortablelink('year', 'Årstal')</th>
+                <th scope="col" style="width: 14%">@sortablelink('title', 'Titel')</th>
+                <th scope="col" style="width: 8%">@sortablelink('price', 'Pris')</th>
+                <th scope="col" style="width: 18%">Yderligere funktioner</th>
             </tr>
         </thead>
         <tbody>
+            @if($books->count() == 0)
+                <tr>
+                    <td colspan="5">No products to display.</td>
+                </tr>
+            @endif
+
             @foreach ($books as $book)
                 <tr>
-                    <th scope="row">{{ $book->id }}</th>
-                    <td>{{ $book->ISBN }}</td>
-                    <td>{{ $book->author->name }}</td>
-                    <td>{{ $book->publisher->name }}</td>
+                    <th scope="row">{{Str::limit($book->id, 3, $end='..')}}</th>
+                    <td>{{Str::limit($book->ISBN, 10, $end='..')}}</td>
+                    <td>{{Str::limit($book->author->name, 20, $end='..')}}</td>
+                    <td>{{Str::limit($book->publisher->name, 20, $end='..')}}</td>
                     <td>{{ $book->year }}</td>
-                    <td>{{ $book->title }}</td>
+                    <td>{{Str::limit($book->title, 13, $end='..')}}</td>
                     <td>{{ $book->price }} kr,-</td>
                     <td>
                         <form action="{{ route('books.destroy',$book->id) }}" method="POST">

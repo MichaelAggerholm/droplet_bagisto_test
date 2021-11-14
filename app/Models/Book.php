@@ -4,15 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $table = 'books';
 
     protected $fillable = [
-        'ISBN', 'publisher_id', 'author_id', 'year', 'title', 'price',
+        'ISBN',
+        'publisher_id',
+        'author_id',
+        'year',
+        'title',
+        'price',
+    ];
+
+    public $sortable = [
+        'id',
+        'ISBN',
+        'publisher_id',
+        'author_id',
+        'year',
+        'title',
+        'price',
     ];
 
     public function author()

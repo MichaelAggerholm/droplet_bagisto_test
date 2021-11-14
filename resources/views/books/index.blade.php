@@ -2,25 +2,20 @@
 
 @section('content')
     <div class="row mt-5">
-        <br>
-        <!-- Search -->
-        <div class="form-group">
-            <form method="GET" action="#" class="form-inline">
-                <input type="search"
-                       name="search"
-                       placeholder="Find something"
-                       aria-label="Search"
-                       class="form-control mr-sm-2"
-                       value="{{ request('search') }}" />
-                <button class="btn btn-success" type="submit">Search</button>
-            </form>
-        </div>
-        <br><br>
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Book CRUD</h2>
+                <h2>Alle bøger</h2>
             </div>
-            <div class="float-right">
+            <div class="float-right searchAndCreate">
+                <form method="GET" action="#" class="form-inline">
+                    <input type="search"
+                           name="search"
+                           placeholder="Find something"
+                           aria-label="Search"
+                           class="form-control mr-sm-2"
+                           value="{{ request('search') }}" />
+                    <button class="btn btn-success mr-sm-2" type="submit">Search</button>
+                </form>
                 <a class="btn btn-success" href="{{ route('books.create') }}"> Create New book</a>
             </div>
         </div>
@@ -52,17 +47,17 @@
                 <td>{{ $book->year }}</td>
                 <td>{{ $book->title }}</td>
                 <td>{{ $book->price }} kr,-</td>
-                <td>
+                <td class="tdFlexCenter">
                     <form action="{{ route('books.destroy',$book->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('books.show',$book->id) }}">Show</a>
+                        <a class="btn btn-info btn-sm" href="{{ route('books.show',$book->id) }}">Show</a>
 
-                        <a class="btn btn-primary" href="{{ route('books.edit',$book->id) }}">Edit</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('books.edit',$book->id) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
                 </td>
             </tr>

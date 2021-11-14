@@ -14,8 +14,15 @@ use App\Http\Controllers\ShoppingbasketController;
 |--------------------------------------------------------------------------
 */
 
+//serve with "php -S localhost:8000 -t public"
+
+
 //Route::get('/', function () {
 //    return view('welcome');
+//});
+
+//Route::get('/', function () {
+//    dd(File::get(public_path('css/app.css')));
 //});
 
 Route::get('/', [BookController::class, 'index']);

@@ -31,11 +31,11 @@
     <table class="table table-sm">
         <thead>
             <tr>
-                <th scope="col" style="width: 4%">@sortablelink('id', '#')</th>
+                <th scope="col" style="width: 5%">@sortablelink('id', '#')</th>
                 <th scope="col" style="width: 15%">@sortablelink('ISBN', 'ISBN')</th>
                 <th scope="col" style="width: 18%">@sortablelink('author_id', 'Forfatter')</th>
                 <th scope="col" style="width: 18%">@sortablelink('publisher_id', 'Forlægger')</th>
-                <th scope="col" style="width: 5%">@sortablelink('year', 'Årstal')</th>
+                <th scope="col" style="width: 4%">@sortablelink('year', 'Årstal')</th>
                 <th scope="col" style="width: 14%">@sortablelink('title', 'Titel')</th>
                 <th scope="col" style="width: 8%">@sortablelink('price', 'Pris')</th>
                 <th scope="col" style="width: 18%">Yderligere funktioner</th>

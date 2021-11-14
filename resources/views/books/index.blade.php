@@ -1,7 +1,7 @@
 @extends('books.layout')
 
 @section('content')
-    <div class="row">
+    <div class="row mt-5">
         <br>
         <!-- Search -->
         <div class="form-group">
@@ -17,10 +17,10 @@
         </div>
         <br><br>
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
+            <div class="float-left">
                 <h2>Book CRUD</h2>
             </div>
-            <div class="pull-right">
+            <div class="float-right">
                 <a class="btn btn-success" href="{{ route('books.create') }}"> Create New book</a>
             </div>
         </div>

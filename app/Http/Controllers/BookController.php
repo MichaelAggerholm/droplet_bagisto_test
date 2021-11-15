@@ -21,16 +21,16 @@ class BookController extends Controller
 
         return view('books.index', ['books' => Book::with(['author', 'publisher'])
             ->when($searchTerm, function ($query) use ($searchTerm) {
-                $query->where('ISBN', 'LIKE', '%' . $searchTerm . '%');
+                $query->where('ISBN', $searchTerm);
                 $query->orWhereHas('author', function($authorQuery) use ($searchTerm) {
                     $authorQuery->where('name', 'LIKE', '%'.$searchTerm.'%');
                 });
                 $query->orWhereHas('publisher', function($authorQuery) use ($searchTerm) {
                     $authorQuery->where('name', 'LIKE', '%'.$searchTerm.'%');
                 });
-                $query->orWhere('year', 'LIKE', '%' . $searchTerm . '%');
+                $query->orWhere('year', $searchTerm);
                 $query->orWhere('title', 'LIKE', '%' . $searchTerm . '%');
-                $query->orWhere('price', 'LIKE', '%' . $searchTerm . '%');
+                $query->orWhere('price', $searchTerm);
             })->sortable()->paginate(14)]);
     }
 

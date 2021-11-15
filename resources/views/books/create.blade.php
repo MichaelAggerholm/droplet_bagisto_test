@@ -2,16 +2,12 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Add New Book</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('books.index') }}"> Back</a>
-            </div>
+        <div class="col-lg-12 margin-tb headerFlex mt-5">
+            <h3>Add New Book</h3>
+            <a class="btn btn-primary btn-sm" href="{{ route('books.index') }}"> Tilbage</a>
         </div>
     </div>
-
+    <hr>
     @if ($errors->any())
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -26,7 +22,7 @@
     <form action="{{ route('books.store') }}" method="POST">
         @csrf
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>ISBN:</strong>
@@ -35,7 +31,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Author id:</strong>
+                    <strong>Forfatter:</strong>
                     <select class="form-control" name="author_id">
                         @if ($authors->count())
                             @foreach($authors as $author)
@@ -48,7 +44,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Author id:</strong>
+                    <strong>Forlægger:</strong>
                     <select class="form-control" name="publisher_id">
                         @if ($publishers->count())
                             @foreach($publishers as $publisher)
@@ -61,26 +57,26 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Year:</strong>
+                    <strong>Årstal:</strong>
                     <input type="number" name="year" class="form-control" placeholder="Year">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Title:</strong>
+                    <strong>Titel:</strong>
                     <input type="text" name="title" class="form-control" placeholder="Title">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Price:</strong>
+                    <strong>Pris:</strong>
                     <input type="number" name="price" class="form-control" placeholder="Price">
                 </div>
             </div>
-{{--            start--}}
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Warehouses:</strong>
+                    <strong>Varehuse:</strong>
+                    <br>
                     @foreach($warehouses as $warehouse)
                         <input type="checkbox" name="checked[]" value="{{ $warehouse->id }}">
                             {{ $warehouse->address }}
@@ -88,10 +84,8 @@
                     @endforeach
                 </div>
             </div>
-{{--            <input type="hidden" name="id" value="{{ $id }}">--}}
-{{--            end--}}
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-sm">Opret</button>
             </div>
         </div>
 

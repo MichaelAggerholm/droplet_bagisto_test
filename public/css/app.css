@@ -14,3 +14,9 @@ a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;
 }
+
+.headerFlex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

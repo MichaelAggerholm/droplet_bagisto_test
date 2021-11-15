@@ -44,7 +44,7 @@
         <tbody>
             @if($books->count() == 0)
                 <tr>
-                    <td colspan="5">No products to display.</td>
+                    <td colspan="5">Der er inden bøger at vise..</td>
                 </tr>
             @endif
 

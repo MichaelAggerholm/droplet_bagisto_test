@@ -75,9 +75,8 @@ class BookController extends Controller
         try {
             $book = Book::create($request->all());
 
-            foreach ($request->checked as $value){
-                $book->warehouses()->attach([$value]);
-            }
+            // create relation to warehouses in the many-to-many relational table
+            $book->warehouses()->sync($request->checked); // $request->checked must be an array
 
             return redirect()->route('books.index')
                 ->with('success','Book created successfully.');
@@ -95,8 +94,10 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        // Show details on a specific book
-        return view('books.show',compact('book'));
+        $warehouses = Warehouse::all();
+        $selectedWarehouse = Book::first()->warehouse_id;
+
+        return view('books.show', compact(['book', 'warehouses'], ['selectedWarehouse']));
     }
 
     /**
@@ -113,7 +114,11 @@ class BookController extends Controller
         $publishers = Publisher::all();
         $selectedPublisher = Book::first()->publisher_id;
 
-        return view('books.edit', compact(['book', 'authors', 'publishers'], ['selectedAuthor', 'selectedPublisher']));
+        $warehouses = Warehouse::all();
+        $selectedWarehouse = Book::first()->warehouse_id;
+
+        return view('books.edit', compact(['book', 'authors', 'publishers', 'warehouses'],
+                        ['selectedAuthor', 'selectedPublisher', 'selectedWarehouse']));
     }
 
     /**
@@ -125,7 +130,6 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        // Update book in the database table
         $request->validate([
             'ISBN' => 'required',
             'publisher_id' => 'required',
@@ -135,14 +139,18 @@ class BookController extends Controller
             'price' => 'required',
         ]);
 
-        $book->update($request->all());
+        try {
+            $book->update($request->all());
 
-        // Match with a warehouse
-        // $warehouses = Warehouse::find(1);
-        // $book->warehouses()->attach($warehouses);
+            // Update relation to warehouses in the many-to-many relational table
+            $book->warehouses()->sync($request->checked);
 
-        return redirect()->route('books.index')
-            ->with('success','Book updated successfully');
+            return redirect()->route('books.index')
+                ->with('success','Book updated successfully.');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e->errorInfo);
+        }
     }
 
     /**

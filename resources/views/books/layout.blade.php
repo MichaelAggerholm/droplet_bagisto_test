@@ -21,8 +21,21 @@
 
 </head>
 <body>
-
 <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('books.index') }}">Bøger</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Forfattere</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     @yield('content')
 </div>
 

@@ -19,7 +19,7 @@ class CreateWarehousesTable extends Migration
             $table->string('address')->length(255);
             $table->integer('phone')->length(10);
             $table->string('url')->length(255)->nullable();
-            $table->integer('isDeleted')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

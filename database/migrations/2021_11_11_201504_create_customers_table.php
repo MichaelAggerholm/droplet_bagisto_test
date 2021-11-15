@@ -19,7 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('name')->length(255);
             $table->string('address')->length(255);
             $table->integer('phone')->length(10);
-            $table->integer('isDeleted')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

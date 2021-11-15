@@ -16,7 +16,7 @@ class CreateShoppingBasketsTable extends Migration
         Schema::create('shoppingbaskets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
-            $table->integer('isDeleted')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

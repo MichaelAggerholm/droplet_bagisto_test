@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->integer('year')->length(10);
             $table->string('title')->length(255);
             $table->decimal('price', 19, 0);
-            $table->integer('isDeleted')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

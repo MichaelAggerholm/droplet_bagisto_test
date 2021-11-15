@@ -1,34 +1,11 @@
-@extends('books.layout')
+@extends('components.layout')
 
 @section('content')
-    <div class="row mt-5">
-        <div class="col-lg-12 margin-tb">
-            <div class="float-left">
-                <h3>Alle bøger</h3>
-            </div>
-            <div class="float-right searchAndCreate">
-                <form method="GET" action="#" class="form-inline">
-                    <input type="search"
-                           name="search"
-                           placeholder="Find noget..."
-                           aria-label="Search"
-                           class="form-control form-control-sm mr-sm-2"
-                           value="{{ request('search') }}" />
-                    <button class="btn btn-success btn-sm mr-sm-2" type="submit">Søg</button>
+    <x-indexHeader title="Alle bøger" name="searchBooks" link="books.create" />
 
-                    <a class="btn btn-success btn-sm" href="{{ route('books.create') }}">Opret</a>
-                </form>
-            </div>
-        </div>
-    </div>
+    <x-success />
 
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    <table class="table table-sm">
+    <table class="table table-sm mt-2">
         <thead>
             <tr>
                 <th scope="col" style="width: 5%">@sortablelink('id', '#')</th>

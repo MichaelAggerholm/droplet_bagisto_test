@@ -1,37 +1,19 @@
-@extends('books.layout')
+@extends('components.layout')
 
 @section('content')
 
-    <div class="row mt-5">
-        <div class="col-lg-12 margin-tb headerFlex">
-            <h3>Rediger bog</h3>
-            <a class="btn btn-primary btn-sm" href="{{ route('books.index') }}"> Tilbage</a>
-        </div>
-    </div>
-    <hr>
-    {{--Error handling--}}
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> Der opstod problemer med dit input!<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <x-pageHeader title="Rediger bog" link="books.index" />
+
+    <x-errorHandler message="Der opstod problemer med dit input!" />
 
     <form action="{{ route('books.update',$book->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="row mt-5">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>ISBN:</strong>
-                    <input type="text" name="ISBN" value="{{ $book->ISBN }}" class="form-control" placeholder="ISBN">
-                </div>
-            </div>
+
+            <x-form.editInput type="text" title="ISBN" name="ISBN" value="{{ $book->ISBN }}" placeholder="ISBN" />
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Forfatter:</strong>
@@ -58,24 +40,11 @@
                     </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Årstal:</strong>
-                    <input type="number" name="year" value="{{ $book->year }}" class="form-control" placeholder="Year">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Titel:</strong>
-                    <input type="text" name="title" value="{{ $book->title }}" class="form-control" placeholder="Title">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Pris:</strong>
-                    <input type="text" name="price" value="{{ $book->price }}" class="form-control" placeholder="Price">
-                </div>
-            </div>
+
+            <x-form.editInput type="number" title="Årstal" name="year" value="{{ $book->year }}" placeholder="Year" />
+            <x-form.editInput type="text" title="Titel" name="title" value="{{ $book->title }}" placeholder="Title" />
+            <x-form.editInput type="text" title="Pris" name="price" value="{{ $book->price }}" placeholder="Price" />
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Varehuse:</strong>
@@ -87,9 +56,8 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                <button type="submit" class="btn btn-primary btn-sm">Rediger</button>
-            </div>
+
+            <x-submitBtn text="Rediger" />
         </div>
     </form>
 @endsection

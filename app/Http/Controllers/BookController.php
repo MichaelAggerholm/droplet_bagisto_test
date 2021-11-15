@@ -17,7 +17,7 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $searchTerm = $request->input('search');
+        $searchTerm = $request->input('searchBooks');
 
         return view('books.index', ['books' => Book::with(['author', 'publisher'])
             ->when($searchTerm, function ($query) use ($searchTerm) {
@@ -79,7 +79,7 @@ class BookController extends Controller
             $book->warehouses()->sync($request->checked); // $request->checked must be an array
 
             return redirect()->route('books.index')
-                ->with('success','Book created successfully.');
+                ->with('success','Bogen er oprettet!');
 
         } catch (\Illuminate\Database\QueryException $e) {
             var_dump($e->errorInfo);
@@ -146,7 +146,7 @@ class BookController extends Controller
             $book->warehouses()->sync($request->checked);
 
             return redirect()->route('books.index')
-                ->with('success','Book updated successfully.');
+                ->with('success','Bogen er nu opdateret!');
 
         } catch (\Illuminate\Database\QueryException $e) {
             var_dump($e->errorInfo);
@@ -165,6 +165,6 @@ class BookController extends Controller
         $book->delete();
 
         return redirect()->route('books.index')
-            ->with('success','Book deleted successfully');
+            ->with('success','Bogen er slettet!');
     }
 }

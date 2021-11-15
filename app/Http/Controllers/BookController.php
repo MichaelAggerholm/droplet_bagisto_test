@@ -33,7 +33,7 @@ class BookController extends Controller
                 $query->orWhere('year', $searchTerm);
                 $query->orWhere('title', 'LIKE', '%' . $searchTerm . '%');
                 $query->orWhere('price', $searchTerm);
-            })->sortable()->paginate(14)]);
+            })->sortable()->paginate(15)]);
     }
 
     /**

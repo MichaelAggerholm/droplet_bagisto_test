@@ -10,6 +10,8 @@ class Author extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'authors';
+
     protected $fillable = [
         'name', 'address', 'phone', 'url',
     ];

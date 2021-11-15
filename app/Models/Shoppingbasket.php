@@ -10,7 +10,7 @@ class Shoppingbasket extends Model
 {
     use HasFactory, SoftDeletes;
 
-//    protected $table = 'shoppingbaskets';
+    protected $table = 'shoppingbaskets';
 
     public function customers(){
         return $this->hasOne('App\Models\Customer');

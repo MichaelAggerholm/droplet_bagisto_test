@@ -16,8 +16,8 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ISBN')->length(255)->unique();
-            $table->foreignId('publisher_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('author_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('publisher_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('author_id')->constrained()->onDelete('cascade');;
             $table->integer('year')->length(10);
             $table->string('title')->length(255);
             $table->decimal('price', 19, 0);

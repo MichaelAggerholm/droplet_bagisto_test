@@ -3,15 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
 class Publisher extends Model
 {
-    use HasFactory, Sortable, SoftDeletes;
+    use HasFactory, Sortable, SoftDeletes, CascadeSoftDeletes;
 
     protected $table = 'publishers';
+
+    protected $cascadeDeletes = ['books'];
 
     protected $fillable = [
         'name',
@@ -30,6 +33,6 @@ class Publisher extends Model
     ];
 
     public function books(){
-        return $this->hasMany('App\Models\Book');
+        return $this->hasMany(Book::class);
     }
 }

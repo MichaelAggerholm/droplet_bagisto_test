@@ -17,8 +17,10 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+        // Search input on book.index view
         $searchTerm = $request->input('searchBooks');
 
+        // Returns view with relation to author and publisher, and search filtering + sort to table with pagination.
         return view('books.index', ['books' => Book::with(['author', 'publisher'])
             ->when($searchTerm, function ($query) use ($searchTerm) {
                 $query->where('ISBN', $searchTerm);
@@ -41,6 +43,8 @@ class BookController extends Controller
      */
     public function create()
     {
+        // Returns create view with relations to author, publisher and warehouse tables.
+
         $authors = Author::all();
         $selectedAuthor = Book::first()->author_id;
 
@@ -63,6 +67,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // Saves book from create view.
+
         $request->validate([
             'ISBN' => 'required',
             'author_id' => 'required',
@@ -108,6 +114,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
+        // Returns edit view with relations to author, publisher and warehouse tables.
+
         $authors = Author::all();
         $selectedAuthor = Book::first()->author_id;
 
@@ -130,6 +138,8 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        // Updates book from edit view.
+
         $request->validate([
             'ISBN' => 'required',
             'publisher_id' => 'required',
@@ -161,10 +171,17 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        // Delete a specific book
-        $book->delete();
+        // Deletes a specific book, then returns with success message.
+        // Softdeletes only since specified in model.
 
-        return redirect()->route('books.index')
-            ->with('success','Bogen er slettet!');
+        try {
+            $book->delete();
+
+            return redirect()->route('books.index')
+                ->with('success','Bogen er slettet!');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e->errorInfo);
+        }
     }
 }

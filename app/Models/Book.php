@@ -13,6 +13,7 @@ class Book extends Model
 
     protected $table = 'books';
 
+    // These fields can be filled when creating and updating.
     protected $fillable = [
         'ISBN',
         'publisher_id',
@@ -22,6 +23,7 @@ class Book extends Model
         'price',
     ];
 
+    // Table on index page can be sorted based on each of the specified fields.
     public $sortable = [
         'id',
         'ISBN',
@@ -32,21 +34,25 @@ class Book extends Model
         'price',
     ];
 
+    // Book belongs to an author.
     public function author()
     {
         return $this->belongsTo(Author::class);
     }
 
+    // Book belongs to a publisher.
     public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }
 
+    // Book can belong to multiple warehouses.
     public function warehouses()
     {
         return $this->belongsToMany(Warehouse::class);
     }
 
+    // Book can belong to multiple shoppingBaskets. (This means ofc a copy of the original book copy thats being sold)
     public function shoppingBasket()
     {
         return $this->belongsToMany(Shoppingbasket::class);

@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('content')
-    <x-indexHeader title="Alle Forfattere" name="searchAuthors" link="authors.create" />
+    <x-indexHeader title="Alle varehuse" name="searchWarehouses" link="warehouses.create" />
 
     <x-success />
 
@@ -17,25 +17,25 @@
             </tr>
         </thead>
         <tbody>
-            @if($authors->count() == 0)
+            @if($warehouses->count() == 0)
                 <tr>
-                    <td colspan="5">Der er inden Forfattere at vise..</td>
+                    <td colspan="5">Der er inden varehuse at vise..</td>
                 </tr>
             @endif
 
-            @foreach ($authors as $author)
+            @foreach ($warehouses as $warehouse)
                 <tr>
-                    <th scope="row">{{Str::limit($author->id, 3, $end='..')}}</th>
-                    <td>{{Str::limit($author->name, 20, $end='..')}}</td>
-                    <td>{{Str::limit($author->address, 20, $end='..')}}</td>
-                    <td>{{ $author->phone }}</td>
-                    <td>{{Str::limit($author->url, 20, $end='..')}}</td>
+                    <th scope="row">{{Str::limit($warehouse->id, 3, $end='..')}}</th>
+                    <td>{{Str::limit($warehouse->name, 20, $end='..')}}</td>
+                    <td>{{Str::limit($warehouse->address, 20, $end='..')}}</td>
+                    <td>{{ $warehouse->phone }}</td>
+                    <td>{{Str::limit($warehouse->url, 20, $end='..')}}</td>
                     <td>
-                        <form action="{{ route('authors.destroy',$author->id) }}" method="POST">
+                        <form action="{{ route('warehouses.destroy',$warehouse->id) }}" method="POST">
 
-                            <a class="btn btn-info btn-sm" href="{{ route('authors.show',$author->id) }}">Detaljer</a>
+                            <a class="btn btn-info btn-sm" href="{{ route('warehouses.show',$warehouse->id) }}">Detaljer</a>
 
-                            <a class="btn btn-primary btn-sm" href="{{ route('authors.edit',$author->id) }}">Rediger</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('warehouses.edit',$warehouse->id) }}">Rediger</a>
 
                             @csrf
                             @method('DELETE')
@@ -48,6 +48,6 @@
         </tbody>
     </table>
 
-    {{$authors->links("pagination::bootstrap-4")}}
+    {{$warehouses->links("pagination::bootstrap-4")}}
 
 @endsection

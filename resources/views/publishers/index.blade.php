@@ -1,7 +1,7 @@
 @extends('components.layout')
 
 @section('content')
-    <x-indexHeader title="Alle Forlæggerer" name="searchPublishers" link="publishers.create" />
+    <x-indexHeader title="Alle Forlæggere" name="searchPublishers" link="publishers.create" />
 
     <x-success />
 
@@ -19,7 +19,7 @@
         <tbody>
             @if($publishers->count() == 0)
                 <tr>
-                    <td colspan="5">Der er inden forlæggerer at vise..</td>
+                    <td colspan="5">Der er inden forlæggere at vise..</td>
                 </tr>
             @endif
 

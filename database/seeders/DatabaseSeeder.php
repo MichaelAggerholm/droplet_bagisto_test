@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // TODO: Probably do name and address here, phone specified to 8 from factory
+        // TODO: And maybe url with 'www.' . fakeString(10) . '.com'
         Warehouse::factory()->create([
             'name' => 'Navn1',
             'address' => 'Adresse1',

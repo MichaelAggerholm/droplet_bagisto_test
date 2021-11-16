@@ -70,12 +70,13 @@ class BookController extends Controller
         // Saves book from create view.
 
         $request->validate([
-            'ISBN' => 'required',
-            'author_id' => 'required',
+            'ISBN' => 'required|string|min:10|max:13',
             'publisher_id' => 'required',
-            'year' => 'required',
-            'title' => 'required',
-            'price' => 'required',
+            'author_id' => 'required',
+            'year' => 'required|integer|digits:4',
+            'title' => 'required|string|max:20',
+            // TODO: Price should maybe not be an integer?
+            'price' => 'required|integer|min:0',
         ]);
 
         try {
@@ -141,12 +142,13 @@ class BookController extends Controller
         // Updates book from edit view.
 
         $request->validate([
-            'ISBN' => 'required',
+            'ISBN' => 'required|string|min:10|max:13',
             'publisher_id' => 'required',
             'author_id' => 'required',
-            'year' => 'required',
-            'title' => 'required',
-            'price' => 'required',
+            'year' => 'required|integer|digits:4',
+            'title' => 'required|string|max:20',
+            // TODO: Price should maybe not be an integer?
+            'price' => 'required|integer|min:0',
         ]);
 
         try {

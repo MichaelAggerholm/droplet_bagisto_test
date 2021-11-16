@@ -47,9 +47,9 @@ class AuthorController extends Controller
         // Saves author from create view.
 
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
+            'name' => 'required|string|max:50',
+            'address' => 'required|string|max:70',
+            'phone' => 'required|numeric|digits:8',
         ]);
 
         try {
@@ -97,9 +97,9 @@ class AuthorController extends Controller
         // Updates author from edit view.
 
         $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'phone' => 'required',
+            'name' => 'required|string|max:50',
+            'address' => 'required|string|max:70',
+            'phone' => 'required|numeric|digits:8',
         ]);
 
         try {

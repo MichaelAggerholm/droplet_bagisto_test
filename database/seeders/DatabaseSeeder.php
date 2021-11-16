@@ -17,27 +17,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Warehouse::factory()->count(15)->create();
-        // Shoppingbasket auto creates Customers on creation.
-        Shoppingbasket::factory()->count(15)->create();
-        // Book auto creates Publishers and Authors on creation.
-        Book::factory()->count(15)->create();
-        User::factory()->count(15)->create();
+        Warehouse::factory()->create([
+            'name' => 'Navn1',
+            'address' => 'Adresse1',
+            'phone' => '12345678',
+            'url' => 'www.test.dk',
+        ]);
 
-        // Many-to-Many factory, randomly combines books with warehouses
-        $books = Book::all();
-        Warehouse::all()->each(function ($warehouse) use ($books) {
-            $warehouse->books()->attach(
-                $books->random(10)->pluck('id')->toArray()
-            );
-        });
-
-        // Many-to-Many factory, randomly combines books with shoppingbaskets
-        $books = Book::all();
-        Shoppingbasket::all()->each(function ($shoppingbasket) use ($books) {
-            $shoppingbasket->books()->attach(
-                $books->random(10)->pluck('id')->toArray()
-            );
-        });
+//        // Shoppingbasket auto creates Customers on creation.
+//        Shoppingbasket::factory()->count(15)->create();
+//        // Book auto creates Publishers and Authors on creation.
+//        Book::factory()->count(15)->create();
+//        User::factory()->count(15)->create();
+//
+//        // Many-to-Many factory, randomly combines books with warehouses
+//        $books = Book::all();
+//        Warehouse::all()->each(function ($warehouse) use ($books) {
+//            $warehouse->books()->attach(
+//                $books->random(10)->pluck('id')->toArray()
+//            );
+//        });
+//
+//        // Many-to-Many factory, randomly combines books with shoppingbaskets
+//        $books = Book::all();
+//        Shoppingbasket::all()->each(function ($shoppingbasket) use ($books) {
+//            $shoppingbasket->books()->attach(
+//                $books->random(10)->pluck('id')->toArray()
+//            );
+//        });
     }
 }

@@ -23,6 +23,7 @@ class Warehouse extends Model
 
     // Table on index page can be sorted based on each of the specified fields.
     public $sortable = [
+        'id',
         'name',
         'address',
         'phone',
@@ -33,4 +34,7 @@ class Warehouse extends Model
     {
         return $this->belongsToMany(Book::class);
     }
+
+    // TODO: When soft deleting a warehouse, should the many-to-many relational data to the books be deleted too?
+    // TODO: Or should it be saved in case the warehouse someday gets "undeleted", or for keeping history of the data.?
 }

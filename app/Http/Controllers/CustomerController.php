@@ -12,9 +12,18 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Search input on customers.index view
+        $searchTerm = $request->input('searchCustomers');
+
+        // Returns view with search filtering + sort to table with pagination.
+        return view('customers.index', ['customers' => Customer::when($searchTerm, function($query) use ($searchTerm){
+            $query->where('mail', 'LIKE', '%' . $searchTerm . '%');
+            $query->orWhere('name', 'LIKE', '%' . $searchTerm . '%');
+            $query->orwhere('address', 'LIKE', '%' . $searchTerm . '%');
+            $query->orWhere('phone', $searchTerm);
+        })->sortable()->paginate(15)]);
     }
 
     /**
@@ -22,71 +31,109 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $customer = new Customer;
-        $customer->mail = 'customer1@gmail.com';
-        $customer->name = 'Customer 1';
-        $customer->address = 'Nykøbsgade 16';
-        $customer->phone = '29617265';
-
-        $customer->save();
-        return 'Success';
+        return view('customers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        // Saves customer from create view.
+
+        $request->validate([
+            'mail' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+
+        try {
+            Customer::create($request->all());
+
+            return redirect()->route('customers.index')
+                ->with('success','Kunde oprettet!');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e->errorInfo);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Customer $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        //
+        return view('customers.show', compact(['customer']));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Customer $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact(['customer']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Customer $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
-        //
+        // Updates customer from edit view.
+
+        $request->validate([
+            'mail' => 'required',
+            'name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+
+        try {
+            $customer->update($request->all());
+
+            return redirect()->route('customers.index')
+                ->with('success','Kunde opdateret!');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e->errorInfo);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Customer $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        // Deletes a specific customer, then returns with success message.
+        // Softdeletes only since specified in model.
+
+        try {
+            $customer->delete();
+
+            return redirect()->route('customers.index')
+                ->with('success','Kunde slettet!');
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e->errorInfo);
+        }
     }
 }

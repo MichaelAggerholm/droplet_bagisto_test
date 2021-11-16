@@ -57,4 +57,7 @@ class Book extends Model
     {
         return $this->belongsToMany(Shoppingbasket::class);
     }
+
+    // TODO: When soft deleting a book, should the many-to-many relational data to warehouses be deleted too?
+    // TODO: Or should it be saved in case the book someday gets "undeleted", or for keeping history of the data.?
 }

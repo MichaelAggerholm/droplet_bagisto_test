@@ -12,12 +12,12 @@ class Shoppingbasket extends Model
 
     protected $table = 'shoppingbaskets';
 
-    public function customers(){
-        return $this->hasOne('App\Models\Customer');
+    public function customer(){
+        return $this->belongsTo(Customer::class);
     }
 
     public function Books()
     {
-        return $this->belongsToMany(Book::class);
+        return $this->hasMany(Book::class);
     }
 }

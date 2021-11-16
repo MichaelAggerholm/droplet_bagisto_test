@@ -30,7 +30,10 @@
                     <a class="nav-link" href="{{ route('books.index') }}">Bøger</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('publishers.index') }}">Forfattere</a>
+                    <a class="nav-link" href="{{ route('authors.index') }}">Forfatterer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('publishers.index') }}">Forlæggerer</a>
                 </li>
             </ul>
         </div>

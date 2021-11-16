@@ -14,7 +14,7 @@ class PublisherController extends Controller
      */
     public function index(Request $request)
     {
-        // Search input on publisher.index view
+        // Search input on publishers.index view
         $searchTerm = $request->input('searchPublishers');
 
         // Returns view with search filtering + sort to table with pagination.

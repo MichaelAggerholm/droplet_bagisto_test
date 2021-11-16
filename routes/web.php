@@ -29,7 +29,6 @@ Route::get('/', [BookController::class, 'index']);
 
 Route::resource('publishers', PublisherController::class);
 Route::resource('authors', AuthorController::class);
-
 Route::resource('books', BookController::class);
 Route::resource('warehouses', WarehouseController::class);
 Route::resource('customers', CustomerController::class);

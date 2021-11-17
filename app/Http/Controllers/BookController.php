@@ -46,13 +46,13 @@ class BookController extends Controller
         // Returns create view with relations to author, publisher and warehouse tables.
 
         $authors = Author::all();
-        $selectedAuthor = Book::first()->author_id;
+        $selectedAuthor = Author::first()->author_id;
 
         $publishers = Publisher::all();
-        $selectedPublisher = Book::first()->publisher_id;
+        $selectedPublisher = Publisher::first()->publisher_id;
 
         $warehouses = Warehouse::all();
-        $selectedWarehouse = Book::first()->warehouse_id;
+        $selectedWarehouse = Warehouse::first()->warehouse_id;
 
         return view('books.create', compact(['authors', 'publishers', 'warehouses'],
                         ['selectedAuthor', 'selectedPublisher', 'selectedWarehouse']
@@ -118,13 +118,13 @@ class BookController extends Controller
         // Returns edit view with relations to author, publisher and warehouse tables.
 
         $authors = Author::all();
-        $selectedAuthor = Book::first()->author_id;
+        $selectedAuthor = Author::first()->author_id;
 
         $publishers = Publisher::all();
-        $selectedPublisher = Book::first()->publisher_id;
+        $selectedPublisher = Publisher::first()->publisher_id;
 
         $warehouses = Warehouse::all();
-        $selectedWarehouse = Book::first()->warehouse_id;
+        $selectedWarehouse = Warehouse::first()->warehouse_id;
 
         return view('books.edit', compact(['book', 'authors', 'publishers', 'warehouses'],
                         ['selectedAuthor', 'selectedPublisher', 'selectedWarehouse']));

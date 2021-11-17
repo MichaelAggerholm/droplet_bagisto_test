@@ -25,13 +25,13 @@ class ShoppingbasketController extends Controller
      */
     public function create()
     {
-        $shoppingbasket = new Shoppingbasket;
-        $shoppingbasket->customer_id = 1;
-
-        $shoppingbasket->save();
-
-        $book = Book::find(1);
-        $shoppingbasket->books()->attach($book);
+//        $shoppingbasket = new Shoppingbasket;
+//        $shoppingbasket->customer_id = 1;
+//
+//        $shoppingbasket->save();
+//
+//        $book = Book::find(1);
+//        $shoppingbasket->books()->attach($book);
 
         return 'Success';
     }

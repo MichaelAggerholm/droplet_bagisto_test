@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ShoppingbasketController extends Controller
 {
+    // https://github.com/Crinsane/LaravelShoppingcart
+    // https://larainfo.com/blogs/laravel-8-add-to-cart-step-by-step-example <- Burde forsøges
+    // https://www.itsolutionstuff.com/post/laravel-shopping-add-to-cart-with-ajax-exampleexample.html
+    // https://github.com/hardevine/LaravelShoppingcart <- jeg tror dette er bedste library for laravel 8.
     /**
      * Display a listing of the resource.
      *

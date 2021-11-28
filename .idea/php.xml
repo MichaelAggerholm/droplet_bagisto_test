@@ -117,6 +117,7 @@
       <path value="$PROJECT_DIR$/vendor/kyslik/column-sortable" />
       <path value="$PROJECT_DIR$/vendor/dyrynda/laravel-cascade-soft-deletes" />
       <path value="$PROJECT_DIR$/vendor/andyabih/laravel-to-uml" />
+      <path value="$PROJECT_DIR$/vendor/darryldecode/cart" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

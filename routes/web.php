@@ -25,8 +25,8 @@ Route::resource('warehouses', WarehouseController::class);
 Route::resource('customers', CustomerController::class);
 // Route::resource('shoppingbaskets', ShoppingbasketController::class);
 
-Route::get('cart', [ShoppingbasketController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [ShoppingbasketController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [ShoppingbasketController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [ShoppingbasketController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [ShoppingbasketController::class, 'clearAllCart'])->name('cart.clear');
+Route::get('basket', [ShoppingbasketController::class, 'basketList'])->name('basket.list');
+Route::post('basket', [ShoppingbasketController::class, 'addToBasket'])->name('basket.store');
+Route::post('update-basket', [ShoppingbasketController::class, 'updateBasket'])->name('basket.update');
+Route::post('remove', [ShoppingbasketController::class, 'removeBasket'])->name('basket.remove');
+Route::post('clear', [ShoppingbasketController::class, 'clearAllBasket'])->name('basket.clear');

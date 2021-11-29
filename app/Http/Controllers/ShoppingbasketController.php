@@ -10,87 +10,61 @@ class ShoppingbasketController extends Controller
 {
     // https://therealprogrammer.com/how-to-make-laravel-8-shopping-cart/
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function basketList()
     {
-        //
+        $basketItems = ShoppingBasket::getContent();
+        // dd($basketItems);
+        return view('basket', compact('basketItems'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-//        $shoppingbasket = new Shoppingbasket;
-//        $shoppingbasket->customer_id = 1;
-//
-//        $shoppingbasket->save();
-//
-//        $book = Book::find(1);
-//        $shoppingbasket->books()->attach($book);
 
-        return 'Success';
+    public function addToBasket(Request $request)
+    {
+        ShoppingBasket::add([
+            /*'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => array(
+            'image' => $request->image,
+            )*/
+        ]);
+        session()->flash('success', 'Product is Added to basket Successfully !');
+
+        return redirect()->route('basket.list');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function updateBasket(Request $request)
     {
-        //
+        Shoppingbasket::update(
+            /*$request->id,
+            [
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $request->quantity
+                ],
+            ]*/
+        );
+
+        session()->flash('success', 'Basket is Updated Successfully !');
+
+        return redirect()->route('basket.list');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function removeBasket(Request $request)
     {
-        //
+        Shoppingbasket::remove($request->id);
+        session()->flash('success', 'Basket Remove Successfully !');
+
+        return redirect()->route('basket.list');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function clearAllCart()
     {
-        //
-    }
+        Shoppingbasket::clear();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        session()->flash('success', 'All Item basket Clear Successfully !');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('basket.list');
     }
 }

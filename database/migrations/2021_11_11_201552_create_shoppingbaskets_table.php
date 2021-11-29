@@ -1,4 +1,9 @@
-<?php
+<?phpSchema::create('shoppingbaskets', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
+            $table->softDeletes();
+            $table->timestamps();
+        });
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
